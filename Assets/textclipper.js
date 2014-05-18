@@ -26,18 +26,23 @@ function paragraphWithText(text)
     summaryElement.style.backgroundColor = "#fff";
     summaryElement.style.border = "";
     summaryElement.style.WebkitTransition = 'max-height 1s';
-    summaryElement.style.maxHeight = "0px";
+    // summaryElement.style.maxHeight = "0px";
     cancelButton = document.createElement('a');
+    cancelButton.className = "PAMcancelButton"
     cancelButton.innerHTML = "X";
     cancelButton.addEventListener("click", function(){
       this.parentNode.parentNode.removeChild(this.parentNode);
     });
     cancelButton.style.cssText = "position:relative;right:-60px;height:30px;width:30px;top:0px;float:right;";
     summaryElement.insertBefore(cancelButton,summaryElement.firstChild);
-    document.getElementById("summaryDiv").appendChild(summaryElement);
+    
+    var summaryDiv = document.getElementById("summaryDiv")
+    summaryDiv.appendChild(summaryElement);
+    summaryDiv.scrollTop = summaryDiv.scrollHeight;
+
 
     window.getComputedStyle(summaryElement).height;
-    summaryElement.style.maxHeight = "2000px";
+    summaryElement.style.maxHeight = "1000px";
   }, false);
 
   return paragraph;
@@ -53,7 +58,7 @@ overlayDiv.style.cssText = 'position:absolute;top:0px;left:0px;bottom:0px;right:
 overlayDiv.id = "overlayDiv";
 
 var summaryDiv = document.createElement('div');
-summaryDiv.style.cssText = 'position:Fixed;bottom:0px;left:0px;right:0px;background-color:white;';
+summaryDiv.style.cssText = 'position:Fixed;bottom:0px;left:0px;right:0px;background-color:white;overflow-y:scroll;max-height:50%;';
 summaryDiv.id = "summaryDiv";
 overlayDiv.appendChild(summaryDiv);
 
@@ -104,3 +109,13 @@ recurse(html);
 
 document.body.appendChild(overlayDiv);
 window.scrollTo(0,0);
+
+function summary()
+{
+  var clone = document.getElementById('summaryDiv').cloneNode(true);
+  var innerHTML = clone.innerHTML.replace(/<a[^>]*>/g, '').replace(/X<\/a>/g, '\n\n'); // Removes delete-links
+  var tmp = document.createElement("DIV");
+   tmp.innerHTML = innerHTML;
+   
+   return tmp.textContent || tmp.innerText || "";
+}
