@@ -9,7 +9,7 @@ function paragraphWithText(text)
   paragraph.innerHTML = text;
   paragraph.style.color = "#FFF";
   paragraph.style.padding = "20px";
-  paragraph.style.maxWidth = "40em";
+  paragraph.style.maxWidth = "35em";
   paragraph.style.margin = "auto";
   paragraph.style.marginTop = "10px";
   paragraph.style.fontFamily = "LatoLatinLight, LatoLatin, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif";
