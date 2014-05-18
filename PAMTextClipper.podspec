@@ -6,7 +6,7 @@
 #
 Pod::Spec.new do |s|
   s.name             = "PAMTextClipper"
-  s.version          = "0.1.2"
+  s.version          = "0.1.3"
   s.summary          = "Javascript for simple copy/paste from a website. Works well with PAMWebBrowser."
   s.homepage         = "http://github.com/PAM-AS/"
   # s.screenshots      = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
@@ -21,5 +21,5 @@ Pod::Spec.new do |s|
   s.requires_arc = false
 
   # s.source_files = 'Classes'
-  s.resources = 'Assets/*'
+  s.resources = 'Assets/textclipper.js'
 end
