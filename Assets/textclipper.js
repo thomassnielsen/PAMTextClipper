@@ -12,7 +12,7 @@ function paragraphWithText(text)
   paragraph.style.maxWidth = "35em";
   paragraph.style.margin = "auto";
   paragraph.style.marginTop = "10px";
-  paragraph.style.fontFamily = "LatoLatinLight, LatoLatin, 'Helvetica Neue', Helvetica, Helvetica, Arial, sans-serif";
+  paragraph.style.fontFamily = "LatoLatinLight, LatoLatin, 'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif";
   paragraph.style.fontSize = "18px";
   paragraph.style.lineHeight = "40px";
   paragraph.style.border = "1px solid white";
@@ -35,7 +35,7 @@ function paragraphWithText(text)
     });
     cancelButton.style.cssText = "position:relative;right:-60px;height:30px;width:30px;top:0px;float:right;";
     summaryElement.insertBefore(cancelButton,summaryElement.firstChild);
-    
+
     var summaryDiv = document.getElementById("summaryDiv")
     summaryDiv.appendChild(summaryElement);
     summaryDiv.scrollTop = summaryDiv.scrollHeight;
@@ -70,7 +70,7 @@ function arrayContains(needle, arrhaystack)
 function appendElement(element)
 {
   string = element.nodeValue;
-  var strippedString = string.replace(/<(?!br\s*\/?)[^>]+>/ig,"").replace(/ +(?= )/g,''); // Remove tags and extra spaces
+  var strippedString = string.replace(/<(?!br\s*\/?)[^>]+>/ig,"").trim(); // Remove tags and extra spaces
   if (strippedString.length < minimumCharacterCount)
   {
     return;
@@ -87,10 +87,10 @@ function appendElement(element)
 
 function recurse(element)
 {
-  if (element.nodeName == "SCRIPT" || 
-      element.nodeName == "STYLE" || 
-      element.nodeName == "HEAD" || 
-      element.nodeName == "IMG" || 
+  if (element.nodeName == "SCRIPT" ||
+      element.nodeName == "STYLE" ||
+      element.nodeName == "HEAD" ||
+      element.nodeName == "IMG" ||
       element.nodeName == "BR" ||
       element.nodeName == "INPUT" ||
       element.nodeName == "#comment")
@@ -98,10 +98,10 @@ function recurse(element)
     return false;
   }
     if (element.childNodes.length > 0)
-        for (var i = 0; i < element.childNodes.length; i++) 
+        for (var i = 0; i < element.childNodes.length; i++)
             recurse(element.childNodes[i]);
 
-    if (element.nodeType == Node.TEXT_NODE && /\S/.test(element.nodeValue)) 
+    if (element.nodeType == Node.TEXT_NODE && /\S/.test(element.nodeValue))
         appendElement(element);
 }
 var html = document.getElementsByTagName('html')[0];
@@ -116,6 +116,6 @@ function summary()
   var innerHTML = clone.innerHTML.replace(/<a[^>]*>/g, '').replace(/X<\/a>/g, '\n\n'); // Removes delete-links
   var tmp = document.createElement("DIV");
    tmp.innerHTML = innerHTML;
-   
+
    return tmp.textContent || tmp.innerText || "";
 }
