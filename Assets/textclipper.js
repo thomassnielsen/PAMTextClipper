@@ -88,6 +88,7 @@ function appendElement(element)
 function recurse(element)
 {
   if (element.nodeName == "SCRIPT" ||
+      element.nodeName == "NOSCRIPT" ||
       element.nodeName == "STYLE" ||
       element.nodeName == "HEAD" ||
       element.nodeName == "IMG" ||
