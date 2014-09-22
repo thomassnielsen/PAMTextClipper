@@ -1,4 +1,4 @@
-var minimumCharacterCount = 60;
+var minimumCharacterCount = 50;
 var paragraphTexts = [];
 
 var paragraphs = [];
